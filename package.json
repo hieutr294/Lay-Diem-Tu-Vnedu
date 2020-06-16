@@ -1,0 +1,20 @@
+{
+  "name": "point",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.19.2",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.2.2",
+    "jsdom-no-contextify": "^3.1.0",
+    "lowdb": "^1.0.0",
+    "najax": "^1.0.4",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
