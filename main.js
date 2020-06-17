@@ -90,14 +90,6 @@ function login(mahs,tinhid,pass,namhoc){
     });
 }
 
-
-var mahs = db.get('info.mahs').value()
-var tinhid = db.get('info.matinh').value()
-var pass = db.get('info.matkhau').value()
-var namhoc = db.get('info.namhoc').value()
-
-login(mahs,tinhid,pass,namhoc)
-
 if(Object.values(db.get('info').value()).every(val=>val=='')){
     question()
     rl.on('close',()=>{
