@@ -39,7 +39,6 @@ function question(){
     })
 }
 function getDiem() {
-    console.log(1)
     najax({
         url: "https://hocbadientu.vnedu.vn/sllservices/index.php" ,
         jsonp: "callback",
@@ -56,7 +55,8 @@ function getDiem() {
             xhr.setRequestHeader("Cookie",db.get('info.cookies').value());
         },
         success: function (response) {
-            console.log(response)
+            let a = response.diem
+            db.set('diem',a).write()
         },
         timeout: 500000,
         error: function (e) {
@@ -80,6 +80,7 @@ function login(mahs,tinhid,pass,namhoc){
         success: function (response,a,xhr) {
             if(response.success){
                 db.set('info.cookies',xhr.getResponseHeader('Set-Cookie')[0]).write()
+                db.set('diem',[]).write()
                 getDiem()            
             }
         },
@@ -107,5 +108,552 @@ if(Object.values(db.get('info').value()).every(val=>val=='')){
     var pass = db.get('info.matkhau').value()
     var namhoc = db.get('info.namhoc').value()
     login(mahs,tinhid,pass,namhoc)
+    rl.close()
 }
 
+
+db.get('diem').value().map(val=>{
+    if(val.hoc_ky==1){
+        console.log('HK1')
+        console.log('--------------------------')
+        val.mon_hoc.map(val=>{
+            switch (val.ten_mon_hoc) {
+                case 'Toán học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break;
+                case 'Vật lí':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break;
+                case 'Hóa học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Sinh học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Tin học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Ngữ văn':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Lịch sử':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Địa lí':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Ngoại ngữ':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'GDCD':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Công nghệ':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Thể dục':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'GDQP':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                default:
+                    break;
+            }
+        })
+        console.log('--------------------------')
+        console.log('\n')
+    }
+    if(val.hoc_ky==2){
+        console.log('HK2')
+        console.log('--------------------------')
+        val.mon_hoc.map(val=>{
+            switch (val.ten_mon_hoc) {
+                case 'Toán học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break;
+                case 'Vật lí':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break;
+                case 'Hóa học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Sinh học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Tin học':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Ngữ văn':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Lịch sử':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Địa lí':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Ngoại ngữ':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'GDCD':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Công nghệ':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'Thể dục':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                case 'GDQP':
+                    console.log(`${val.ten_mon_hoc}`)
+                    if(val.M[0]!=undefined){
+                        console.log('M:')
+                        val.M.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.P[0]!=undefined){
+                        console.log('15P:')
+                        val.P.map(val2=>console.log(`\t ${val2.diem}`))    
+                    }
+                    if(val.V[0]!=undefined){
+                        console.log('45P:')
+                        val.V.map(val2=>console.log(`\t ${val2.diem}`))
+                    }
+                    if(val.HK[0]!=undefined){
+                        console.log(`HK: ${val.HK[0].diem}`)
+                        console.log(`TK: ${val.TK[0].diem}`)
+                    }
+                    console.log('\n')
+                    break
+                default:
+                    break;
+            }
+        })
+        console.log('--------------------------')
+    }
+})

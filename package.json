@@ -1,7 +1,7 @@
 {
   "name": "point",
   "version": "1.0.0",
-  "description": "",
+  "description": "#### mahs:mã học sinh #### key:mật khẩu #### tinh_id:mã tỉnh",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +11,13 @@
   "devDependencies": {
     "lowdb": "^1.0.0",
     "najax": "^1.0.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieutr294/Lay-Diem-Tu-Vnedu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hieutr294/Lay-Diem-Tu-Vnedu/issues"
+  },
+  "homepage": "https://github.com/hieutr294/Lay-Diem-Tu-Vnedu#readme"
 }
